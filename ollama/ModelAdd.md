@@ -9,20 +9,17 @@ Llama-3-Open-Ko-8B-Instruct-preview 모델을 Ollama에 올려보자.
    - [허깅페이스 저장소 접속](#허깅페이스-저장소-접속)
    - [다운로드 방법](#다운로드-방법)
 2. [Modelfile 파일 생성](#modelfile-파일-생성)
-3. [Ollama Modelfile 생성](#ollama-modelfile-생성)
-4. [Ollama Model 실행](#ollama-model-실행)
+3. [Ollama 모델 생성 및 실행](#ollama-모델-생성-및-실행)
 
 ## GGUF 형식의 모델 파일 다운로드
 
-허깅페이스에 GGUF 형식으로 업로드 된 모델을 다운로드한다. 이 글에서는 Llama-3-Open-Ko-8B-Instruct-preview-gguf 파일을 예시로 사용한다.
-
 ### 허깅페이스 저장소 접속
-https://huggingface.co/teddylee777/Llama-3-Open-Ko-8B-Instruct-preview-gguf
+[Llama-3-Open-Ko-8B-Instruct-preview-gguf](https://huggingface.co/teddylee777/Llama-3-Open-Ko-8B-Instruct-preview-gguf) 저장소에 접속합니다.
 
 ### 다운로드 방법
 
 #### 방법 1: git lfs 이용 다운로드
-git이 설치되어 있다면 다음과 같이 git clone 명령을 통해 다운로드할 수 있다.
+git이 설치되어 있다면 다음과 같이 git clone 명령을 통해 다운로드할 수 있습니다:
 
 ```bash
 git lfs install
@@ -36,7 +33,7 @@ git clone https://huggingface.co/teddylee777/Llama-3-Open-Ko-8B-Instruct-preview
 
 ## Modelfile 파일 생성
 
-다운로드한 GGUF 파일이 위치한 경로에 Modelfile 파일을 생성하고 다음 내용을 입력 후 저장한다.
+다운로드한 GGUF 파일이 위치한 경로에 `Modelfile`을 생성하고 다음 내용을 입력합니다:
 
 ```text
 FROM Llama-3-Open-Ko-8B-Instruct-preview-Q8_0.gguf
@@ -48,7 +45,6 @@ TEMPLATE """{{- if .System }}
 {{ .Prompt }}</s>
 <s>Assistant:
 """
-
 SYSTEM """친절한 챗봇으로서 상대방의 요청에 최대한 자세하고 친절하게 답하자. 모든 대답은 한국어(Korean)으로 대답해줘."""
 
 PARAMETER temperature 0
@@ -58,17 +54,17 @@ PARAMETER stop <s>
 PARAMETER stop </s>
 ```
 
-## Ollama Modelfile 생성
+## Ollama 모델 생성 및 실행
 
-위에서 작성한 Modelfile을 바탕으로 kollama3라는 이름으로 모델을 Ollama에 추가한다.
+### 모델 생성
+다음 명령어로 `kollama3`라는 이름으로 모델을 Ollama에 추가합니다:
 
 ```bash
 ollama create kollama3 -f Modelfile
 ```
 
-## Ollama Model 실행
-
-Ollama에 추가한 kollama3 모델을 실행한다.
+### 모델 실행
+생성된 `kollama3` 모델을 실행합니다:
 
 ```bash
 ollama run kollama3
