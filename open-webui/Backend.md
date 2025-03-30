@@ -171,6 +171,14 @@ npm run dev
 
 `src/components/chat/MessageInput.svelte` 파일에서 파일 업로드 관련 코드를 주석 처리합니다.
 
+#### 3.3.4. 적용시 문제점 해결 
+
+`PORT="${PORT:-8080}"` 
+`uvicorn open_webui.main:app --port $PORT --host 0.0.0.0 --forwarded-allow-ips '*' --reloadips를 * 이 아닌 127.0.0.1`
+
+
+
+
 ## 결론
 
 Open Web UI는 Svelte와 FastAPI를 핵심 프레임워크로 사용하며, 커스터마이징하여 상용화 수준으로 완성하는데 일주일 정도가 소요됩니다. 풀스택 개발자(LLM 파인튜닝, RAG, 데이터분석, 프론트엔드, 백엔드, 아키텍처, 인프라 경험)라면 짧은 시간 내에 작업을 완료할 수 있습니다.
